@@ -12,6 +12,7 @@ description = "A fully YAML 1.2 compliant YAML parser"
 repository = "https://github.com/Ethiraric/yaml-rust2"
 readme = "README.md"
 edition = "2021"
+rust-version = "1.70"
 
 [dependencies]
 arraydeque = "0.5.1"

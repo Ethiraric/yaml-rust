@@ -38,3 +38,14 @@ jobs:
         run: cargo build
       - name: Run tests
         run: cargo test -v
+
+  msrv:
+    name: Test using MSRV
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - run: rustup toolchain install $(awk '/^rust-version/ { gsub(/"/, ""); print $3 }' Cargo.toml) --profile minimal --no-self-update
+      - run: cargo build --all-targets
+      - run: git submodule update --init
+      - run: cargo test --all-targets
