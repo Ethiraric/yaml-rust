@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - ci-test
 
 jobs:
   check:
@@ -38,3 +39,9 @@ jobs:
         run: cargo build
       - name: Run tests
         run: cargo test -v
+  msrv:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: taiki-e/install-action@cargo-hack
+    - run: cargo hack check --rust-version --workspace --all-targets --ignore-private
